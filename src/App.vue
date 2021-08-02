@@ -1,32 +1,73 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-navigation-drawer app color="blue" v-model="drawer" :clipped="clipped">
+
+      <v-list class="mt-15">
+
+        <v-list-item
+            v-for="route in routes"
+            :key="route.name"
+            :to="route.path"
+            color="white"
+            link
+        >
+
+          <v-list-item-content class="ml-4">
+            <v-list-item-title>{{ route.name }}</v-list-item-title>
+          </v-list-item-content>
+
+        </v-list-item>
+
+      </v-list>
+
+    </v-navigation-drawer>
+
+    <v-app-bar app color="white" :clipped-left="clipped">
+
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Collapsing Bar</v-toolbar-title>
+
+    </v-app-bar>
+
+    <!-- Sizes your content based upon application components -->
+    <v-main>
+
+      <!-- Provides the application the proper gutter -->
+      <v-container fluid class="pa-5">
+
+        <!-- If using vue-router -->
+        <router-view></router-view>
+
+      </v-container>
+    </v-main>
+
+    <v-footer app>
+      <!-- -->
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import {Vue, Prop, Component} from 'vue-property-decorator'
+import {RouteConfig, RouteRecordPublic} from "vue-router";
 
-#nav {
-  padding: 30px;
-}
+@Component
+export default class App extends Vue {
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  drawer = true;
+  clipped = false;
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  items = [
+    { title: 'Home2', icon: 'mdi-home-city' },
+    { title: 'My Account', icon: 'mdi-account' },
+    { title: 'Users', icon: 'mdi-account-group-outline' },
+  ];
+
+  get routes(): RouteRecordPublic[] | undefined {
+    return this.$router.getRoutes();
+    //return this.$router.options.routes;
+  }
+
 }
-</style>
+</script>
