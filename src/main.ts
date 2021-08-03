@@ -6,6 +6,9 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
+import {container} from "tsyringe";
+Object.defineProperty(Vue.prototype, '$container', {value: container});
+
 new Vue({
   router,
   vuetify,

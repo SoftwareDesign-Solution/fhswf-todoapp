@@ -88,66 +88,102 @@
         </v-row>
       </v-col>
     </v-row>
+
+    <v-row>
+
+      <v-col>
+
+        <v-btn
+            @click="onDebugClicked"
+            large
+        >
+          Debug
+        </v-btn>
+
+      </v-col>
+
+    </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+import { container } from "tsyringe";
+import {Vue, Component} from 'vue-property-decorator'
+import StatusService from "@/services/Status.Service";
+import Status from "@/models/Status";
 
-  export default Vue.extend({
-    name: 'HelloWorld',
+@Component
+export default class HelloWorld extends Vue {
 
-    data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
-    }),
-  })
+  ecosystem: any = [
+    {
+      text: 'vuetify-loader',
+      href: 'https://github.com/vuetifyjs/vuetify-loader',
+    },
+    {
+      text: 'github',
+      href: 'https://github.com/vuetifyjs/vuetify',
+    },
+    {
+      text: 'awesome-vuetify',
+      href: 'https://github.com/vuetifyjs/awesome-vuetify',
+    },
+  ];
+
+  importantLinks: any = [
+    {
+      text: 'Documentation',
+      href: 'https://vuetifyjs.com',
+    },
+    {
+      text: 'Chat',
+      href: 'https://community.vuetifyjs.com',
+    },
+    {
+      text: 'Made with Vuetify',
+      href: 'https://madewithvuejs.com/vuetify',
+    },
+    {
+      text: 'Twitter',
+      href: 'https://twitter.com/vuetifyjs',
+    },
+    {
+      text: 'Articles',
+      href: 'https://medium.com/vuetify',
+    },
+  ];
+
+  whatsNext: any = [
+    {
+      text: 'Explore components',
+      href: 'https://vuetifyjs.com/components/api-explorer',
+    },
+    {
+      text: 'Select a layout',
+      href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
+    },
+    {
+      text: 'Frequently Asked Questions',
+      href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
+    },
+  ];
+
+  private statusService: StatusService;
+
+  constructor() {
+
+    super();
+
+    this.statusService = container.resolve(StatusService);
+
+  }
+
+  private async onDebugClicked(): Promise<void> {
+
+    const status: Status[] = await this.statusService.getAllStatus();
+
+    console.log(status);
+
+  }
+}
 </script>
