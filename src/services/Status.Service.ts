@@ -20,4 +20,20 @@ export default class StatusService {
 
     }
 
+    public async createStatus(status: Status): Promise<void> {
+        await this.apiService.post('/status', status);
+    }
+
+    public async updateStatus(status: Status): Promise<void> {
+        await this.apiService.put(`/status/${status.id}`, status);
+    }
+
+    public async deleteStatus(status: Status): Promise<void> {
+        await this.apiService.delete(`/status/${status.id}`);
+    }
+
+    public async deleteAllStatus(): Promise<void> {
+        await this.apiService.delete('/status');
+    }
+
 }

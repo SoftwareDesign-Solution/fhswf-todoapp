@@ -54,6 +54,7 @@ export default class TaskList extends Vue {
   headers = [
     { text: '', value: 'checkbox'},
     { text: 'Aufgaben-Nr.', value: 'id' },
+    { text: 'Projekt', value: 'project'},
     { text: 'Bezeichnung', value: 'title' },
     { text: 'Status', value: 'status' },
     { text: 'Aktionen', value: 'actions' }

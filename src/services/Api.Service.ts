@@ -1,5 +1,7 @@
 import axios, {AxiosInstance} from "axios";
+import {singleton} from "tsyringe";
 
+@singleton()
 export default class ApiService {
 
     private axios: AxiosInstance;
