@@ -7,13 +7,13 @@
         <v-list-item
             v-for="route in routes"
             :key="route.name"
-            :to="route.path"
+            :to="{name: route.name }"
             color="white"
-            link
+            exact
         >
 
           <v-list-item-content class="ml-4">
-            <v-list-item-title>{{ route.name }}</v-list-item-title>
+            <v-list-item-title>{{ route.meta.title }}</v-list-item-title>
           </v-list-item-content>
 
         </v-list-item>
@@ -26,7 +26,7 @@
 
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Collapsing Bar</v-toolbar-title>
+      <v-toolbar-title>{{ this.$route.meta.title }}</v-toolbar-title>
 
     </v-app-bar>
 
@@ -65,7 +65,7 @@ export default class App extends Vue {
   ];
 
   get routes(): RouteRecordPublic[] | undefined {
-    return this.$router.getRoutes();
+    return this.$router.getRoutes()?.filter(r => r.meta.showInSidebar);
     //return this.$router.options.routes;
   }
 

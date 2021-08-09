@@ -96,9 +96,28 @@
         <v-btn
             @click="onDebugClicked"
             large
+            color="primary"
         >
           Debug
         </v-btn>
+
+      </v-col>
+
+    </v-row>
+
+    <v-row>
+
+      <v-col>{{ test }}</v-col>
+
+    </v-row>
+
+    <v-row>
+
+      <v-col>
+
+        <task-form :task="test" @submit-form="submitTaskForm">
+
+        </task-form>
 
       </v-col>
 
@@ -111,8 +130,13 @@ import { container } from "tsyringe";
 import {Vue, Component} from 'vue-property-decorator'
 import StatusService from "@/services/Status.Service";
 import Status from "@/models/Status";
-
-@Component
+import TaskForm from "@/components/TaskForm.vue";
+import Test from "@/models/Test";
+import Task from "@/models/Task";
+import TaskService from "@/services/Task.Service";
+@Component({
+  components: {TaskForm}
+})
 export default class HelloWorld extends Vue {
 
   ecosystem: any = [
@@ -169,12 +193,19 @@ export default class HelloWorld extends Vue {
   ];
 
   private statusService: StatusService;
+  private taskService: TaskService;
 
   constructor() {
 
     super();
 
     this.statusService = container.resolve(StatusService);
+    this.taskService = container.resolve(TaskService);
+
+    //this.test = new Test();
+    //this.test.name = 'Hello World';
+
+    this.test = this.taskService.createEmptyTask();
 
   }
 
@@ -184,6 +215,12 @@ export default class HelloWorld extends Vue {
 
     console.log(status);
 
+  }
+
+  private test: Task;
+
+  private submitTaskForm(value: string): void {
+    console.log(value);
   }
 }
 </script>

@@ -1,17 +1,28 @@
+import Priority from "@/models/Priority";
+import Project from "@/models/Project";
+import Status from "@/models/Status";
+
 export default interface Task {
 
+    completed: boolean;
+
+
     id: number;
-
-    projectId: number;
-
-    project: string;
-
-    status: number;
 
     title: string;
 
     description: string;
 
-    completed: boolean;
-    
+    priority: number;
+
+    project: number;
+
+    status: number;
+
+    startDate: Date | null;
+
+    endDate: Date | null;
+
+    dueDate: Date | null;
+
 }

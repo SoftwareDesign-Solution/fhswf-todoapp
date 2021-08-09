@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import TaskList from "@/views/TaskList.vue";
 import TaskEdit from "@/views/TaskEdit.vue";
+import TaskCreate from "@/views/TaskCreate.vue";
 
 Vue.use(VueRouter)
 
@@ -10,25 +11,38 @@ const routes: Array<RouteConfig> = [
   {
     path: '//',
     name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: Home,
+    meta: {
+      title: 'Startseite',
+      showInSidebar: true,
+    }
   },
   {
     path: '/tasks',
-    name: 'Aufgaben',
-    component: TaskList
+    name: 'TaskList',
+    component: TaskList,
+    meta: {
+      title: 'Aufgaben anzeigen',
+      showInSidebar: true,
+    }
   },
   {
-    path: '/tasks/:id',
+    path: '/tasks/:id/edit',
     name: 'TaskEdit',
-    component: TaskEdit
+    component: TaskEdit,
+    meta: {
+      title: 'Aufgabe bearbeiten',
+      showInSidebar: false,
+    }
+  },
+  {
+    path: '/tasks/new',
+    name: 'TaskCreate',
+    component: TaskCreate,
+    meta: {
+      title: 'Aufgabe erstellen',
+      showInSidebar: true,
+    }
   }
 ]
 

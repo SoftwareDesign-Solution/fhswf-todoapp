@@ -34,4 +34,22 @@ export default class TaskService {
         await this.apiService.delete('/tasks');
     }
 
+    public createEmptyTask(): Task {
+
+        const task: Task = {
+            id: 0,
+            status: 0,
+            project: 0,
+            title: '',
+            completed: false,
+            description: '',
+            dueDate: null,
+            endDate: null,
+            priority: 0,
+            startDate: null,
+        };
+
+        return task;
+
+    }
 }

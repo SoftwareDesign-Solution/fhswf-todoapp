@@ -1,5 +1,5 @@
-export default class Test {
+export default interface Test {
 
-    name = '';
+    name: string;// = '';
 
 }
