@@ -4,25 +4,36 @@ import Status from "@/models/Status";
 
 export default interface Task {
 
-    completed: boolean;
-
-
     id: number;
+
+    //projectId: number;
+
+    project: Project | null;
+
+    //statusId: number;
+
+    status: Status | null;
+
+    //priorityId: number;
+
+    priority: Priority | null;
 
     title: string;
 
     description: string;
 
-    priority: number;
+    dueDate: Date | null;
 
-    project: number;
+    completed: boolean;
 
-    status: number;
+    completedDate: Date | null;
 
     startDate: Date | null;
 
     endDate: Date | null;
 
-    dueDate: Date | null;
+    createdDate: Date | null;
+
+    updatedDate: Date | null;
 
 }

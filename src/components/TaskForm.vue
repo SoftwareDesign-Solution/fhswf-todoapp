@@ -5,27 +5,30 @@
         :items="projects"
         item-value="id"
         item-text="name"
-        v-model="task.project"
+        v-model="task.project.id"
         filled
         label="Projekt"
+        id="project"
     ></v-select>
 
     <v-select
         :items="priorities"
         item-value="id"
         item-text="name"
-        v-model="task.priority"
+        v-model="task.priority.id"
         filled
         label="Priorität"
+        id="priority"
     ></v-select>
 
     <v-select
         :items="status"
         item-value="id"
         item-text="name"
-        v-model="task.status"
+        v-model="task.status.id"
         filled
         label="Status"
+        id="status"
     ></v-select>
 
     <div>
@@ -48,6 +51,7 @@
               v-bind="attrs"
               v-on="on"
               filled
+              id="startdate"
           ></v-text-field>
         </template>
         <v-date-picker
@@ -95,6 +99,7 @@
               v-bind="attrs"
               v-on="on"
               filled
+              id="enddate"
           ></v-text-field>
         </template>
         <v-date-picker

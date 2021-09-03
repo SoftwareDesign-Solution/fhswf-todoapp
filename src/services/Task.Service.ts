@@ -38,15 +38,30 @@ export default class TaskService {
 
         const task: Task = {
             id: 0,
-            status: 0,
-            project: 0,
+            //projectId: 0,
+            project: {
+                id: 0,
+                name: '',
+            },
+            //statusId: 0,
+            status: {
+                id: 0,
+                name: '',
+            },
+            //priorityId: 0,
+            priority: {
+                id: 0,
+                name: '',
+            },
             title: '',
-            completed: false,
             description: '',
             dueDate: null,
-            endDate: null,
-            priority: 0,
+            completed: false,
+            completedDate: null,
             startDate: null,
+            endDate: null,
+            createdDate: null,
+            updatedDate: null,
         };
 
         return task;

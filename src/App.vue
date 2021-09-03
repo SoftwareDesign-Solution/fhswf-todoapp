@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app color="blue" v-model="drawer" :clipped="clipped">
+    <v-navigation-drawer app color="primary" v-model="drawer" :clipped="clipped">
 
       <v-list class="mt-15">
 
@@ -8,12 +8,12 @@
             v-for="route in routes"
             :key="route.name"
             :to="{name: route.name }"
-            color="white"
+            :id="route.name"
             exact
         >
 
-          <v-list-item-content class="ml-4">
-            <v-list-item-title>{{ route.meta.title }}</v-list-item-title>
+          <v-list-item-content class="ml-4" color="white">
+            <v-list-item-title color="white">{{ route.meta.title }}</v-list-item-title>
           </v-list-item-content>
 
         </v-list-item>
@@ -71,3 +71,10 @@ export default class App extends Vue {
 
 }
 </script>
+
+<style>
+.active_list .v-list-group .v-list-item--active {
+  color: #FFFFFF !important;
+}
+</style>
+
