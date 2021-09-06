@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "extends": [
+    "es/browser"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "no-redeclare": "off",
+    "@typescript-eslint/indent": "off",
+    "class-methods-use-this": "off",
+    "padded-blocks": "off",
+  }
+}

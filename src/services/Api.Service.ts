@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any */
 import axios, {AxiosInstance} from "axios";
 import {singleton} from "tsyringe";
 
